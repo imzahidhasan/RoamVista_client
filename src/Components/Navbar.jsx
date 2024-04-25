@@ -7,14 +7,14 @@ const Navbar = () => {
         <li><NavLink to={'/'} className={({ isActive  }) =>
              isActive ? "text-blue-800 bg-blue-300" : ""
         }>Home</NavLink></li>
-        <li><NavLink to={'/'} className={({ isActive }) =>
+        <li><NavLink to={'/all-tourist-spot'} className={({ isActive }) =>
              isActive ? "text-blue-800 bg-blue-300" : ""
         }>All Tourists Spot</NavLink></li>
-        {<li><NavLink to={'/'} className={({ isActive }) =>
+        {<li><NavLink to={'/add-tourist-spot'} className={({ isActive }) =>
              isActive ? "text-blue-800 bg-blue-300" : ""
         }>Add Tourists Spot</NavLink></li>}
         {
-            <li><NavLink to={'/'} className={({ isActive }) =>
+            <li><NavLink to={'/my-list'} className={({ isActive }) =>
                  isActive ? "text-blue-800 bg-blue-300" : ""
             }>My List</NavLink></li>
         }
@@ -30,7 +30,7 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <a className="btn btn-ghost font-bold text-lg md:text-4xl">RoamVista</a>
+                <Link to={'/'} className="btn btn-ghost font-bold text-lg md:text-4xl">RoamVista</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
