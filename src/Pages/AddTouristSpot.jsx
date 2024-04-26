@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { FirebaseContext } from '../firebase/FirebaseProvider'
+import toast from 'react-hot-toast'
 
 const AddTouristSpot = () => {
   const { user } = useContext(FirebaseContext)
@@ -9,15 +10,22 @@ const AddTouristSpot = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm({
-    defaultValues: {
-      user_email: `${user?.email}`,
-      user_name: `${user?.displayName}`
-    }
-})
+  } = useForm()
 
-  const onSubmit = (data) => { 
-    console.log(data);
+  const onSubmit = (data) => {
+    fetch(`http://localhost:3000/add-tourist-spot`, {
+      method: 'POST',
+      headers: {
+        'content-type': "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+      .then(res => res.json())
+      .then(result => {
+        if (result.insertedId) {
+          toast.success('Successfully added your tourist spot')
+        }
+      })
     reset()
   }
 
@@ -34,7 +42,7 @@ const AddTouristSpot = () => {
               <p className="text-sm">Share your favorite travel destinations from around the world! Help fellow explorers discover exciting new places to visit by submitting details about remarkable tourist spots, hidden gems, and must-see attractions.</p>
               <div>
                 <img className='w-full h-full' src="https://i.ibb.co/9gZm782/The-Little-Things-Working.png" alt="" />
-             </div>
+              </div>
             </div>
 
             <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
@@ -56,15 +64,31 @@ const AddTouristSpot = () => {
                 {errors.tourist_spot_name && <span className='text-red-500' >This field is required</span>}
               </div>
               <div className="col-span-full sm:col-span-3">
-                <label className="text-sm">Country Name</label>
-                <input {...register("country_name", {
-                  required: true,
-                  pattern: {
-                    value: /^(?=.*\b(?:France|Italy|Spain|England|Netherlands|Switzerland)\b)(?!.*\b(?:France|Italy|Spain|England|Netherlands|Switzerland)\b.*\b(?:France|Italy|Spain|England|Netherlands|Switzerland)\b).*$/,
-                    message: 'Invalid input. Please enter a single country name from the following list, with the first letter capitalized: France, Italy, Spain, England, Netherlands, Switzerland.'
-                  }
-                })} type="text" placeholder="Country name" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:border-none p-4 border  focus:dark:ring-violet-600 dark:border-gray-300" />
-                {errors.country_name && <span className='text-red-500' >{errors.country_name.message||'This field is required'}</span>}
+                <label className="mb-2 ">Select a country:</label>
+                <div className="relative">
+                  <select
+                    {...register('country_name', { required: true })}
+                    className="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-500 px-4 py-4  rounded shadow leading-tight focus:dark:ring-violet-600 dark:border-gray-300"
+                  >
+                    <option disabled >Country</option>
+                    <option value="France">France</option>
+                    <option value="Italy">Italy</option>
+                    <option value="Spain">Spain</option>
+                    <option value="England">England</option>
+                    <option value="Netherlands">Netherlands</option>
+                    <option value="Switzerland">Switzerland</option>
+                  </select>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <svg
+                      className="fill-current h-4 w-4"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                    </svg>
+                  </div>
+                </div>
+
 
               </div>
               <div className="col-span-full sm:col-span-3">
@@ -100,13 +124,13 @@ const AddTouristSpot = () => {
               </div>
               <div className="col-span-full sm:col-span-3">
                 <label className="text-sm">User email</label>
-                <input {...register("user_email", { required: true })} type="text" placeholder="Enter your email" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:border-none p-4 border  focus:dark:ring-violet-600 dark:border-gray-300" />
+                <input disabled value={user?.email} {...register("user_email")} type="text" placeholder="Enter your email" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:border-none p-4 border  focus:dark:ring-violet-600 dark:border-gray-300" />
                 {errors.user_email && <span className='text-red-500' >This field is required</span>}
 
               </div>
               <div className="col-span-full sm:col-span-3">
                 <label className="text-sm">User name</label>
-                <input {...register("user_name", { required: true })} type="text" placeholder="Enter your name" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:border-none p-4 border  focus:dark:ring-violet-600 dark:border-gray-300" />
+                <input disabled value={user?.displayName} {...register("user_name")} type="text" placeholder="Enter your name" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:border-none p-4 border  focus:dark:ring-violet-600 dark:border-gray-300" />
                 {errors.user_name && <span className='text-red-500' >This field is required</span>}
 
               </div>
