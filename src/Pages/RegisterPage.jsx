@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import { FirebaseContext } from '../firebase/FirebaseProvider'
+import toast from 'react-hot-toast'
 
 const RegisterPage = () => {
     const { createUser, updateUser } = useContext(FirebaseContext)
@@ -15,10 +16,18 @@ const RegisterPage = () => {
 
     const onSubmit = (data) => {
         const { name, email, photoURL, password } = data
-        createUser(email, password)
+        const createUserPromise= createUser(email, password)
             .then(() => {
-                updateUser(name, photoURL).then('updated')
+                updateUser(name, photoURL)
             })
+            .catch((error) => {
+            console.error(error)
+        })
+        toast.promise(createUserPromise, {
+            loading: 'creating your profile',
+            success: 'Profile created successfully',
+            error: 'Error,Profile not created!',
+        });
         reset()
     }
 

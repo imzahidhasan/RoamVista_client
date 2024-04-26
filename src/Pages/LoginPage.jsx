@@ -1,37 +1,84 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { FirebaseContext } from '../firebase/FirebaseProvider'
 import { GoogleAuthProvider } from 'firebase/auth'
 import { GithubAuthProvider } from 'firebase/auth'
+import toast from 'react-hot-toast'
+import { useForm } from 'react-hook-form'
 
 const LoginPage = () => {
     const googleProvider = new GoogleAuthProvider()
     const githubProvider = new GithubAuthProvider()
-    const { googleLogin, githubLogin } = useContext(FirebaseContext)
+    const { googleLogin, githubLogin,loginUser } = useContext(FirebaseContext)
+    const location = useLocation()
+    const navigate=useNavigate()
     const handleGoogleLogin = () => {
-        googleLogin(googleProvider)
-            .then(user => console.log(user))
+        const googlePromise = googleLogin(googleProvider).then((user) => {
+            if (user) {
+                navigate(location?.state || '/')
+            }
+        })
+        toast.promise(googlePromise, {
+            loading: 'logging......',
+            success: 'Login successfully',
+            error: 'Error ocurred,try again'
+        })
     }
+
     const handleGithubLogin = () => {
-        githubLogin(githubProvider)
-            .then(user => console.log(user))
+        const githubPromise = githubLogin(githubProvider).then((user) => {
+            if (user) {
+                navigate(location?.state || '/')
+            }
+        })
+        toast.promise(githubPromise, {
+            loading: 'Logging......',
+            success: 'login successfully',
+            error:'Error occurred,try again'
+        })
     }
+
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
+    } = useForm()
+
+    const onSubmit = (data) => {
+        const { email, password } = data
+        const logginPromise = loginUser(email, password).then((user) => {
+            if (user) {
+                reset()
+                navigate(location?.state || '/')
+            }
+        })
+        toast.promise(logginPromise, {
+            loading: "logging to your profile",
+            success: 'login successfully',
+            error:'Please provide correct email and password'
+        })
+    }
+
     return (
         <div className=' flex justify-center items-center'>
             <div className="w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-50 dark:text-gray-800">
                 <h1 className="text-2xl font-bold text-center">Login</h1>
-                <form className="space-y-6">
+
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     <div className="space-y-1 text-sm">
                         <label className="block dark:text-gray-600">Email</label>
-                        <input type="email" name="email" placeholder="Enter your email" className="w-full px-4 py-3 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
+                        <input {...register("email", { required: true })} type="email"placeholder="Enter your email" className="w-full px-4 py-3 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
                     </div>
                     <div className="space-y-1 text-sm">
                         <label htmlFor="password" className="block dark:text-gray-600">Password</label>
-                        <input type="password" name="password" placeholder="Enter your password" className="w-full px-4 py-3 rounded-md border dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
+                        <input {...register("password", { required: true })} type="password"  placeholder="Enter your password" className="w-full px-4 py-3 rounded-md border dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
 
                     </div>
                     <button className="block w-full p-3 text-center rounded-sm dark:text-gray-50 dark:bg-violet-600">Login</button>
                 </form>
+
+
                 <div className="flex items-center pt-4 space-x-1">
                     <div className="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>
                     <p className="px-3 text-sm dark:text-gray-600">Login with social accounts</p>

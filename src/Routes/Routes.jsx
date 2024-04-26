@@ -9,6 +9,7 @@ import AddTourishSpot from "../Pages/AddTouristSpot"
 import AllTouristSpot from "../Pages/AllTouristSpot"
 import MyListPage from "../Pages/MyListPage"
 import UpdateSpotPage from "../Pages/UpdateSpotPage"
+import PrivetRoute from "../Pages/PrivetRoute"
 
 const routes = createBrowserRouter([
     {
@@ -30,11 +31,11 @@ const routes = createBrowserRouter([
             },
             {
                 path: 'Details',
-                element: <ViewDetails />
+                element: <PrivetRoute> <ViewDetails /></PrivetRoute>
             },
             {
                 path: 'add-tourist-spot',
-                element:<AddTourishSpot/>
+                element: <PrivetRoute><AddTourishSpot /></PrivetRoute>
             },
             {
                 path: 'all-tourist-spot',
@@ -42,11 +43,11 @@ const routes = createBrowserRouter([
             },
             {
                 path: 'my-list',
-                element:<MyListPage/>
+                element: <PrivetRoute><MyListPage /></PrivetRoute>
             },
             {
                 path: 'update-spot',
-                element:<UpdateSpotPage/>
+                element: <PrivetRoute><UpdateSpotPage /></PrivetRoute>
             }
         ]
     },

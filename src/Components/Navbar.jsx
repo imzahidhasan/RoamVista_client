@@ -1,22 +1,31 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import { FirebaseContext } from '../firebase/FirebaseProvider'
+import toast from 'react-hot-toast'
 
 const Navbar = () => {
-
+    const { user, logout, setUser } = useContext(FirebaseContext)
+    const handleLogout = () => {
+        logout()
+            .then(() => {
+                toast.success('Logged out successfully.')
+            })
+        setUser(null)
+    }
     const links = <>
-        <li><NavLink to={'/'} className={({ isActive  }) =>
-             isActive ? "text-blue-800 bg-blue-300" : ""
+        <li><NavLink to={'/'} className={({ isActive }) =>
+            isActive ? "text-blue-800 bg-blue-300" : ""
         }>Home</NavLink></li>
         <li><NavLink to={'/all-tourist-spot'} className={({ isActive }) =>
-             isActive ? "text-blue-800 bg-blue-300" : ""
+            isActive ? "text-blue-800 bg-blue-300" : ""
         }>All Tourists Spot</NavLink></li>
-        {<li><NavLink to={'/add-tourist-spot'} className={({ isActive }) =>
-             isActive ? "text-blue-800 bg-blue-300" : ""
-        }>Add Tourists Spot</NavLink></li>}
+        {<li>{user?<NavLink to={'/add-tourist-spot'} className={({ isActive }) =>
+            isActive ? "text-blue-800 bg-blue-300" : ""
+        }>Add Tourists Spot</NavLink>:''}</li>}
         {
-            <li><NavLink to={'/my-list'} className={({ isActive }) =>
-                 isActive ? "text-blue-800 bg-blue-300" : ""
-            }>My List</NavLink></li>
+            <li>{user?<NavLink to={'/my-list'} className={({ isActive }) =>
+                isActive ? "text-blue-800 bg-blue-300" : ""
+            }>My List</NavLink>:''}</li>
         }
     </>
     return (
@@ -38,8 +47,8 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end  gap-1 md:gap-2">
-                <Link to={'/register'} className="btn">Register</Link>
-                <Link to={'/login'} className="btn">Login</Link>
+                {user ? <button onClick={handleLogout} className='btn'>Logout</button> : <><Link to={'/register'} className="btn">Register</Link>
+                    <Link to={'/login'} className="btn">Login</Link></> }
             </div>
         </div>
     )
