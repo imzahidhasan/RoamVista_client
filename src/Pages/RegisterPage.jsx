@@ -1,12 +1,12 @@
 import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FirebaseContext } from '../firebase/FirebaseProvider'
 import toast from 'react-hot-toast'
 
 const RegisterPage = () => {
     const { createUser, updateUser } = useContext(FirebaseContext)
-
+    const navigate = useNavigate()
     const {
         register,
         handleSubmit,
@@ -16,13 +16,14 @@ const RegisterPage = () => {
 
     const onSubmit = (data) => {
         const { name, email, photoURL, password } = data
-        const createUserPromise= createUser(email, password)
+        const createUserPromise = createUser(email, password)
             .then(() => {
                 updateUser(name, photoURL)
+                navigate('/')
             })
             .catch((error) => {
-            console.error(error)
-        })
+                console.error(error)
+            })
         toast.promise(createUserPromise, {
             loading: 'creating your profile',
             success: 'Profile created successfully',
@@ -51,34 +52,37 @@ const RegisterPage = () => {
                             <div>
                                 <label className="block mb-2 text-sm">Email</label>
                                 <input {...register("email", {
+                                    required: true,
                                     pattern: {
                                         value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                                         message: 'Email address is not in the correct format'
                                     }
                                 })} type="email" placeholder="Enter your email" className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800" />
-                                {errors.email && <span className='text-red-500'>{errors.email.message}</span>}
+                                {errors.email && <span className='text-red-500'>{errors.email.message || 'This field is required'}</span>}
                             </div>
                             <div>
                                 <label className="block mb-2 text-sm">Photo URL</label>
                                 <input {...register("photoURL", {
+                                    required: true,
                                     pattern: {
                                         value: /^https:\/\//,
                                         message: 'URL must start with https://'
                                     }
                                 })} type="text" name="photoURL" placeholder="Your photo url here" className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800" />
-                                {errors.photoURL && <span className='text-red-500'>{errors.photoURL.message}</span>}
+                                {errors.photoURL && <span className='text-red-500'>{errors.photoURL.message || 'This field is required'}</span>}
                             </div>
                             <div>
                                 <div className="flex justify-between mb-2">
                                     <label className="text-sm">Password</label>
                                 </div>
                                 <input {...register("password", {
+                                    required:true,
                                     pattern: {
                                         value: /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/,
                                         message: "Password must contain at least one uppercase letter, one lowercase letter, and at least 6 characters long."
                                     }
                                 })} type="password" placeholder='Enter your password' className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800" />
-                                {errors.password && <span className='text-red-500'>{errors.password.message}</span>}
+                                {errors.password && <span className='text-red-500'>{errors.password.message || 'This field is required'}</span>}
                             </div>
                         </div>
                         <div className="space-y-2">

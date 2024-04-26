@@ -2,7 +2,8 @@ import React, { useContext } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { FirebaseContext } from '../firebase/FirebaseProvider'
 import toast from 'react-hot-toast'
-
+import 'react-tooltip/dist/react-tooltip.css'
+import { Tooltip } from 'react-tooltip'
 const Navbar = () => {
     const { user, logout, setUser } = useContext(FirebaseContext)
     const handleLogout = () => {
@@ -47,8 +48,18 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end  gap-1 md:gap-2">
-                {user ? <button onClick={handleLogout} className='btn'>Logout</button> : <><Link to={'/register'} className="btn">Register</Link>
-                    <Link to={'/login'} className="btn">Login</Link></> }
+                {user ? <>
+                    <div className="avatar">
+                        <div className="w-10 rounded-full ring ring-orange-600 ring-offset-base-100 ring-offset-2">
+                            <a className="my-anchor-element"><img src={user?.photoURL} /></a>
+                            <Tooltip className='relative z-10' anchorSelect=".my-anchor-element" >
+                                {user?.displayName}
+                            </Tooltip>
+                        </div>
+                    </div>
+                    <button onClick={handleLogout} className='btn'>Logout</button></> : <><Link to={'/register'} className="btn">Register</Link>
+                    <Link to={'/login'} className="btn">Login</Link>
+                </>}
             </div>
         </div>
     )
