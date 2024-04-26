@@ -1,7 +1,27 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
+import { FirebaseContext } from '../firebase/FirebaseProvider'
 
 const RegisterPage = () => {
+    const { createUser, updateUser } = useContext(FirebaseContext)
+
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
+    } = useForm()
+
+    const onSubmit = (data) => {
+        const { name, email, photoURL, password } = data
+        createUser(email, password)
+            .then(() => {
+                updateUser(name, photoURL).then('updated')
+            })
+        reset()
+    }
+
     return (
         <>
             <div className='flex justify-center items-center'>
@@ -10,25 +30,46 @@ const RegisterPage = () => {
                         <h1 className="my-3 text-4xl font-bold">Register</h1>
                         <p className="text-sm dark:text-gray-600">Register to create your account</p>
                     </div>
-                    <form className="space-y-12">
+
+
+                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
                         <div className="space-y-4">
                             <div>
                                 <label className="block mb-2 text-sm">Name</label>
-                                <input type="text" name="name" placeholder="Enter your name" className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800" />
+                                <input {...register("name", { required: true })} type="text" placeholder="Enter your name" className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800" />
+                                {errors.name && <span className='text-red-500'>This field is required</span>}
                             </div>
                             <div>
-                                <label htmlFor="email" className="block mb-2 text-sm">Email</label>
-                                <input type="email" name="email" placeholder="Enter your email" className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800" />
+                                <label className="block mb-2 text-sm">Email</label>
+                                <input {...register("email", {
+                                    pattern: {
+                                        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                                        message: 'Email address is not in the correct format'
+                                    }
+                                })} type="email" placeholder="Enter your email" className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800" />
+                                {errors.email && <span className='text-red-500'>{errors.email.message}</span>}
                             </div>
                             <div>
                                 <label className="block mb-2 text-sm">Photo URL</label>
-                                <input type="text" name="photoURL" placeholder="Your photo url here" className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800" />
+                                <input {...register("photoURL", {
+                                    pattern: {
+                                        value: /^https:\/\//,
+                                        message: 'URL must start with https://'
+                                    }
+                                })} type="text" name="photoURL" placeholder="Your photo url here" className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800" />
+                                {errors.photoURL && <span className='text-red-500'>{errors.photoURL.message}</span>}
                             </div>
                             <div>
                                 <div className="flex justify-between mb-2">
                                     <label className="text-sm">Password</label>
                                 </div>
-                                <input type="password" name="password" placeholder='Enter your password' className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800" />
+                                <input {...register("password", {
+                                    pattern: {
+                                        value: /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/,
+                                        message: "Password must contain at least one uppercase letter, one lowercase letter, and at least 6 characters long."
+                                    }
+                                })} type="password" placeholder='Enter your password' className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800" />
+                                {errors.password && <span className='text-red-500'>{errors.password.message}</span>}
                             </div>
                         </div>
                         <div className="space-y-2">
@@ -37,9 +78,12 @@ const RegisterPage = () => {
                             </div>
                         </div>
                     </form>
-                            <p className="p-6 text-sm text-center dark:text-gray-600">Already have an account?
-                                <Link to={'/login'} className="hover:underline dark:text-violet-600">Login</Link>.
-                            </p>
+
+
+
+                    <p className="p-6 text-sm text-center dark:text-gray-600">Already have an account?
+                        <Link to={'/login'} className="hover:underline dark:text-violet-600">Login</Link>.
+                    </p>
                 </div>
             </div>
         </>
