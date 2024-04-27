@@ -30,8 +30,9 @@ const routes = createBrowserRouter([
                 element: <RegisterPage />
             },
             {
-                path: 'Details',
-                element: <PrivetRoute> <ViewDetails /></PrivetRoute>
+                path: 'details/:id',
+                element: <PrivetRoute> <ViewDetails /></PrivetRoute>,
+                loader: ({ params }) => fetch(`http://localhost:3000/details/${params.id}`)
             },
             {
                 path: 'add-tourist-spot',

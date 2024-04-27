@@ -1,6 +1,5 @@
 import React from 'react'
 import { useLoaderData } from 'react-router-dom'
-import Table from '../Components/Table';
 
 const MyListPage = () => {
   const spot_data = useLoaderData()
