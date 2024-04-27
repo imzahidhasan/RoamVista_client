@@ -13,7 +13,7 @@ const AddTouristSpot = () => {
   } = useForm()
 
   const onSubmit = (data) => {
-    fetch(`http://localhost:3000/add-tourist-spot`, {
+    fetch(`https://roam-vista-server.vercel.app/add-tourist-spot`, {
       method: 'POST',
       headers: {
         'content-type': "application/json"
@@ -123,15 +123,45 @@ const AddTouristSpot = () => {
 
               </div>
               <div className="col-span-full sm:col-span-3">
-                <label className="text-sm">User email</label>
-                <input disabled value={user?.email} {...register("user_email")} type="text" placeholder="Enter your email" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:border-none p-4 border  focus:dark:ring-violet-600 dark:border-gray-300" />
-                {errors.user_email && <span className='text-red-500' >This field is required</span>}
+                <label className="mb-2 ">Your email:</label>
+                <div className="relative">
+                  <select
+                    {...register('user_email', { required: true })}
+                    className="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-500 px-4 py-4  rounded shadow leading-tight focus:dark:ring-violet-600 dark:border-gray-300"
+                  >
+                    <option value={user?.email}>{user?.email}</option>
+                  </select>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <svg
+                      className="fill-current h-4 w-4"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                    </svg>
+                  </div>
+                </div>
 
               </div>
               <div className="col-span-full sm:col-span-3">
-                <label className="text-sm">User name</label>
-                <input disabled value={user?.displayName} {...register("user_name")} type="text" placeholder="Enter your name" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:border-none p-4 border  focus:dark:ring-violet-600 dark:border-gray-300" />
-                {errors.user_name && <span className='text-red-500' >This field is required</span>}
+                <label className="mb-2 ">Your name</label>
+                <div className="relative">
+                  <select
+                    {...register('user_name', { required: true })}
+                    className="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-500 px-4 py-4  rounded shadow leading-tight focus:dark:ring-violet-600 dark:border-gray-300"
+                  >
+                    <option value={user?.displayName}>{user?.displayName}</option>
+                  </select>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <svg
+                      className="fill-current h-4 w-4"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                    </svg>
+                  </div>
+                </div>
 
               </div>
               <div className="col-span-full">

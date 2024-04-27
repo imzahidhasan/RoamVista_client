@@ -19,7 +19,7 @@ const routes = createBrowserRouter([
         children: [
             {
                 index: true,
-                element:<HomePage/>
+                element: <HomePage />
             },
             {
                 path: 'login',
@@ -39,11 +39,13 @@ const routes = createBrowserRouter([
             },
             {
                 path: 'all-tourist-spot',
-                element:<AllTouristSpot/>
+                element: <AllTouristSpot />,
+                loader: () => fetch('https://roam-vista-server.vercel.app/all-tourist-spot')
             },
             {
-                path: 'my-list',
-                element: <PrivetRoute><MyListPage /></PrivetRoute>
+                path: 'my-list/:email',
+                element: <PrivetRoute><MyListPage /></PrivetRoute>,
+                loader: ({ params }) => fetch(`https://roam-vista-server.vercel.app/my-list/${params.email}`)
             },
             {
                 path: 'update-spot',

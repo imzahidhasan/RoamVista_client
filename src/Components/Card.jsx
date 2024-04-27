@@ -1,20 +1,21 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const Card = () => {
+const Card = ({ spot}) => {
+    const { description, location, photoURL, country_name, tourist_spot_name, _id }=spot
   return (
-      <div>
-          <div className="bg-gray-200 p-4 rounded-lg shadow-md max-w-sm">
-              <img className="w-full mb-4" src="https://i.ibb.co/pJSWKz4/marco-chilese-f5-Khg-GV8vb-I-unsplash.jpg" alt="Flex" />
+      <div className='mx-auto'>
+          <div className="bg-gray-200 p-4 rounded-lg shadow-md">
+              <img className="w-full min-h-52 max-h-52 mb-4" src={ photoURL}  />
               <div className="">
-                  <h2 className="text-lg font-bold mb-2">FLEX</h2>
-                  <p className="text-gray-700">
-                      This is the shorthand for flex-grow, flex-shrink and flex-basis combined.
-                      The second and third parameters (flex-shrink and flex-basis) are optional.
-                      Default is 0 1 auto.
+                  <h2 className="text-lg font-bold mb-2">{tourist_spot_name}</h2>
+                  <p className="text-gray-700 hyphens-auto">{`${description.slice(0,120)}....` }
                   </p>
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
-                      Button
-                  </button>
+                  <Link to={`/details/${_id}`}>
+                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
+                          Button
+                      </button>
+                  </Link>
               </div>
           </div>
     </div>

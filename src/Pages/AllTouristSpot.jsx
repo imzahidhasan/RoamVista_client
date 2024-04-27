@@ -1,18 +1,21 @@
 import React from 'react'
+import Card from '../Components/Card'
+import { useLoaderData } from 'react-router-dom'
+import Heading from '../Components/Heading'
 
 const AllTouristSpot = () => {
+  const spot_data = useLoaderData()
+  console.log(spot_data);
   return (
-    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-      <img src="https://via.placeholder.com/400x200" alt="Tourist Spot Image" class="w-full h-48 object-cover"/>
-        <div class="p-4">
-          <h2 class="text-xl font-bold mb-2">Tourist Spot Name</h2>
-          <p class="text-gray-700 mb-2">Average Cost: $100</p>
-          <p class="text-gray-700 mb-2">Total Visitors Per Year: 50,000</p>
-          <p class="text-gray-700 mb-2">Travel Time: 5 days</p>
-          <p class="text-gray-700 mb-4">Seasonality: Summer</p>
-          <a href="#" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">View Details</a>
-        </div>
-    </div>
+    <>
+      <Heading text={'Best Places to Visit'} para={ `
+From the towering peaks of the Swiss Alps to the sun-kissed beaches of Bali, the world's best places to visit promise awe-inspiring beauty and unforgettable experiences. Whether it's exploring the bustling streets of New York City or marveling at the grandeur of the Taj Mahal, there's something to captivate every traveler's heart and soul.`} />
+    <div className=' container mx-auto p-4 grid grid-cols-1 md:grid-cols-2 gap-4 lg:grid-cols-3'>
+      {
+        spot_data.map((spot) => <Card key={spot._id} spot={spot}></Card>)
+      }
+      </div>
+    </>
   )
 }
 

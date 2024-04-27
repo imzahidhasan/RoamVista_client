@@ -61,7 +61,6 @@ const Slider = () => {
       </div>
       <div>
         <Heading text='This is a heading ' />
-        <Card/>
       </div>
     </>
   )
