@@ -11,7 +11,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 
 
 
-const Slider = () => {
+const HomePage = () => {
   const tourist_spot = useLoaderData()
   const [country, setCountry] = useState([])
   useEffect(() => {
@@ -110,4 +110,4 @@ const Slider = () => {
   )
 }
 
-export default Slider
+export default HomePage

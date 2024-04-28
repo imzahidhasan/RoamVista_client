@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import { FirebaseContext } from '../firebase/FirebaseProvider'
 import toast from 'react-hot-toast'
+import Lottie from "lottie-react"
+import signup from '../assets/signup.json'
 
 const RegisterPage = () => {
     const { createUser, updateUser } = useContext(FirebaseContext)
@@ -34,14 +36,13 @@ const RegisterPage = () => {
 
     return (
         <>
-            <div className='flex justify-center items-center'>
+            <div className='flex flex-col md:flex-row justify-center items-center'>
+                <Lottie animationData={signup} loop={true} />
                 <div className="flex flex-col w-full max-w-md p-6 rounded-md sm:p-10 dark:bg-gray-50 dark:text-gray-800">
                     <div className="mb-8 text-center">
                         <h1 className="my-3 text-4xl font-bold">Register</h1>
                         <p className="text-sm dark:text-gray-600">Register to create your account</p>
                     </div>
-
-
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
                         <div className="space-y-4">
                             <div>
@@ -76,7 +77,7 @@ const RegisterPage = () => {
                                     <label className="text-sm">Password</label>
                                 </div>
                                 <input {...register("password", {
-                                    required:true,
+                                    required: true,
                                     pattern: {
                                         value: /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/,
                                         message: "Password must contain at least one uppercase letter, one lowercase letter, and at least 6 characters long."

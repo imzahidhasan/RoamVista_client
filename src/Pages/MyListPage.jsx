@@ -1,5 +1,6 @@
 import { data } from 'autoprefixer'
 import React, { useState } from 'react'
+import toast from 'react-hot-toast'
 import { useLoaderData } from 'react-router-dom'
 import Swal from 'sweetalert2'
 const MyListPage = () => {
@@ -35,6 +36,7 @@ const MyListPage = () => {
             fetch('https://roam-vista-server.vercel.app/all-tourist-spot')
               .then(res => res.json())
               .then(data => setSpot_data(data))
+            toast.success('Deleted successfully!')
           })
 
       }

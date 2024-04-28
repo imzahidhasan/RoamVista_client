@@ -6,6 +6,11 @@ import { GithubAuthProvider } from 'firebase/auth'
 import toast from 'react-hot-toast'
 import { useForm } from 'react-hook-form'
 
+import login from '../assets/login.json'
+import Lottie from 'lottie-react'
+
+
+
 const LoginPage = () => {
     const googleProvider = new GoogleAuthProvider()
     const githubProvider = new GithubAuthProvider()
@@ -61,10 +66,10 @@ const LoginPage = () => {
     }
 
     return (
-        <div className=' flex justify-center items-center'>
+        <div className=' flex flex-col md:flex-row justify-center items-center'>
+            <Lottie animationData={login} loop={true} className='max-w-96' />
             <div className="w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-50 dark:text-gray-800">
                 <h1 className="text-2xl font-bold text-center">Login</h1>
-
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     <div className="space-y-1 text-sm">
                         <label className="block dark:text-gray-600">Email</label>

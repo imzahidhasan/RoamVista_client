@@ -57,7 +57,7 @@ const routes = createBrowserRouter([
             {
                 path: 'spot-in-the-country/:country_name',
                 element: <AllSpotInCountry />,
-                loader: ({ params }) => fetch(`http://localhost:3000/spot-in-the-country/${params.country_name}`)
+                loader: ({ params }) => fetch(`https://roam-vista-server.vercel.app/spot-in-the-country/${params.country_name}`)
             },
            
         ]
