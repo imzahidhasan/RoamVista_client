@@ -45,7 +45,7 @@ const HomePage = () => {
                   <div className="bg-black bg-opacity-40 absolute inset-0"></div>
                   {isActive && (
                     <div className="text-center text-white z-10">
-                      <h2 className="text-4xl text-blue-300 font-bold mb-4">  "Explore Europe's Charm", Visit <Typewriter words={['France','Italy','Spain','England','Netherlands','Switzerland']} cursor={true} loop={true} /></h2>
+                      <h2 className="text-4xl text-blue-300 font-bold mb-4">  "Explore Europe's Charm", Travel to <Typewriter words={['France','Italy','Spain','England','Netherlands','Switzerland']} cursor={true} loop={true} /></h2>
                       <p className="text-start max-w-[600px] tracking-wide mx-auto">Embark on unforgettable adventures with RoamVista. Our expertly crafted itineraries promise to take you to the world's most enchanting destinations. Let us be your guide as you create memories to last a lifetime</p>
                     </div>
                   )}
@@ -61,7 +61,7 @@ const HomePage = () => {
                   <div className="bg-black bg-opacity-50 absolute inset-0"></div>
                   {isActive && (
                     <div className="text-center text-white z-10">
-                      <h2 className="text-4xl font-bold mb-4">Journey Across Europe" </h2>
+                      <h2 className="text-4xl font-bold mb-4 text-blue-300">Journey Across Europe" Travel to  <Typewriter words={['France', 'Italy', 'Spain', 'England', 'Netherlands', 'Switzerland']} cursor={true} loop={true} /></h2>
                       <p className="text-start max-w-[600px] tracking-wide mx-auto">"Embark on an odyssey through Europe's diverse landscapes and captivating cultures. From the romance of Paris to the splendor of the Swiss Alps, let our curated experiences immerse you in the heart of each destination. Get ready to discover the wonders of Europe like never before."</p>
                     </div>
                   )}
@@ -77,7 +77,7 @@ const HomePage = () => {
                   <div className="bg-black bg-opacity-50 absolute inset-0"></div>
                   {isActive && (
                     <div className="text-center text-white z-10" >
-                      <h2 className="text-4xl font-bold mb-4"> "Embark on an Adventure"</h2>
+                      <h2 className="text-4xl font-bold mb-4 text-blue-300"> "Embark on an Adventure" Travel to <Typewriter words={['France', 'Italy', 'Spain', 'England', 'Netherlands', 'Switzerland']} cursor={true} loop={true} /></h2>
                       <p className="text-start max-w-[600px] tracking-wide mx-auto">Uncover the timeless beauty of Europe with [Your Travel Agency Name]. Traverse through quaint villages, wander along cobblestone streets, and immerse yourself in the vibrant cultures that define this enchanting continent. Let us guide you on a journey filled with breathtaking landscapes, iconic landmarks, and unforgettable moments."</p>
                     </div>
                   )}
@@ -93,7 +93,7 @@ const HomePage = () => {
                   <div className="bg-black bg-opacity-50 absolute inset-0"></div>
                   {isActive && (
                     <div className="text-center text-white z-10">
-                      <h2 className="text-4xl font-bold mb-4"> "Discover Your Path"</h2>
+                      <h2 className="text-4xl font-bold mb-4 text-blue-300"> "Discover Your Path" Travel to  <Typewriter words={['France', 'Italy', 'Spain', 'England', 'Netherlands', 'Switzerland']} cursor={true} loop={true} /></h2>
                       <p className="text-start max-w-[600px] tracking-wide mx-auto">"Set foot on a journey of self-discovery with us. Navigate through unknown territories, uncover hidden treasures, and embrace the unexpected twists that define your unique path. Let every step be a testament to your courage, resilience, and determination to explore the depths of your soul. Join us as we embark on a quest to uncover the true essence of who you are."</p>
                     </div>
                   )}

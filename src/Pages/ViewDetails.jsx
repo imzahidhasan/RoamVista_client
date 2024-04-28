@@ -24,7 +24,7 @@ const ViewDetails = () => {
                                     <p className="mb-4">
                                           <strong>Travel Time:</strong>{spot_data.travel_time}</p>
                                     <p className="mb-4">
-                                          <strong>Total Visitors per Year:</strong> {spot_data.total_visitor_per_year}</p>
+                                          <strong>Total Visitors per Year:</strong> {spot_data.totalVisitorsPerYear}</p>
                                     <h2 className="text-xl font-bold mb-2">Description:</h2>
                                     <p className="mb-8">{spot_data.description}</p>
                                     <h2 className="text-xl font-bold mb-2">User Information:</h2>
