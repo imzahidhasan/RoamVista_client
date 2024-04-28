@@ -2,7 +2,8 @@ import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { FirebaseContext } from '../firebase/FirebaseProvider'
 import toast from 'react-hot-toast'
-
+import Lottie from 'lottie-react'
+import write from '../assets/write.json'
 const AddTouristSpot = () => {
   const { user } = useContext(FirebaseContext)
   const {
@@ -41,7 +42,7 @@ const AddTouristSpot = () => {
               <p className="font-medium text-xl">Tourist Spot Information</p>
               <p className="text-sm">Share your favorite travel destinations from around the world! Help fellow explorers discover exciting new places to visit by submitting details about remarkable tourist spots, hidden gems, and must-see attractions.</p>
               <div>
-                <img className='w-full h-full' src="https://i.ibb.co/9gZm782/The-Little-Things-Working.png" alt="" />
+                <Lottie animationData={write} loop={true}  ></Lottie>
               </div>
             </div>
 

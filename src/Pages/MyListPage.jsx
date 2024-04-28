@@ -1,7 +1,7 @@
 import { data } from 'autoprefixer'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
-import { useLoaderData } from 'react-router-dom'
+import { Link, useLoaderData } from 'react-router-dom'
 import Swal from 'sweetalert2'
 const MyListPage = () => {
   const data = useLoaderData()
@@ -67,7 +67,7 @@ const MyListPage = () => {
               <td>{spot.country_name}</td>
               <td>{spot.location}</td>
               <td>{spot.totalVisitorsPerYear}</td>
-              <td><button className='btn btn-outline btn-info'>UPDATE</button></td>
+              <td><Link to={`/update-spot/${spot._id}`}><button className='btn btn-outline btn-info'>UPDATE</button></Link></td>
               <td><button onClick={() => handleDelete(spot._id)} className='btn btn-outline btn-error'>DELETE</button></td>
             </tr>)
           }

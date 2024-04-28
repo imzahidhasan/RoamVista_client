@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Card = ({ spot }) => {
-    console.log(spot);
     const { description, totalVisitorsPerYear, travel_time, seasonality,photoURL, average_cost, tourist_spot_name, _id }=spot
   return (
       <div className='mx-auto'>
