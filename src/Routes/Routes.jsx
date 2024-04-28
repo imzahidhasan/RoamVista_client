@@ -10,6 +10,7 @@ import AllTouristSpot from "../Pages/AllTouristSpot"
 import MyListPage from "../Pages/MyListPage"
 import UpdateSpotPage from "../Pages/UpdateSpotPage"
 import PrivetRoute from "../Pages/PrivetRoute"
+import AllSpotInCountry from "../Pages/AllSpotInCountry"
 
 const routes = createBrowserRouter([
     {
@@ -19,7 +20,8 @@ const routes = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <HomePage />
+                element: <HomePage />,
+                loader: () => fetch('https://roam-vista-server.vercel.app/all-tourist-spot')
             },
             {
                 path: 'login',
@@ -32,7 +34,7 @@ const routes = createBrowserRouter([
             {
                 path: 'details/:id',
                 element: <PrivetRoute> <ViewDetails /></PrivetRoute>,
-                loader: ({ params }) => fetch(`http://localhost:3000/details/${params.id}`)
+                loader: ({ params }) => fetch(`https://roam-vista-server.vercel.app/details/${params.id}`)
             },
             {
                 path: 'add-tourist-spot',
@@ -51,7 +53,13 @@ const routes = createBrowserRouter([
             {
                 path: 'update-spot',
                 element: <PrivetRoute><UpdateSpotPage /></PrivetRoute>
-            }
+            },
+            {
+                path: 'spot-in-the-country/:country_name',
+                element: <AllSpotInCountry />,
+                loader: ({ params }) => fetch(`http://localhost:3000/spot-in-the-country/${params.country_name}`)
+            },
+           
         ]
     },
 

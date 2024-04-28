@@ -19,13 +19,13 @@ const Footer = () => {
                         <h3 className="tracking-wide uppercase dark:text-gray-900">Product</h3>
                         <ul className="space-y-1">
                             <li>
-                                <a rel="noopener noreferrer" href="#">Features</a>
+                                <a rel="noopener noreferrer" href="#">Hotel</a>
                             </li>
                             <li>
-                                <a rel="noopener noreferrer" href="#">Integrations</a>
+                                <a rel="noopener noreferrer" href="#">Travel</a>
                             </li>
                             <li>
-                                <a rel="noopener noreferrer" href="#">Pricing</a>
+                                <a rel="noopener noreferrer" href="#">Air ticket</a>
                             </li>
                             <li>
                                 <a rel="noopener noreferrer" href="#">FAQ</a>
@@ -44,18 +44,20 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div className="space-y-3">
-                        <h3 className="uppercase dark:text-gray-900">Developers</h3>
-                        <ul className="space-y-1">
-                            <li>
-                                <a rel="noopener noreferrer" href="#">Public API</a>
-                            </li>
-                            <li>
-                                <a rel="noopener noreferrer" href="#">Documentation</a>
-                            </li>
-                            <li>
-                                <a rel="noopener noreferrer" href="#">Guides</a>
-                            </li>
-                        </ul>
+                        <div>
+                            <h3 className="tracking-wide uppercase text-gray-700 mb-4">Contact Information</h3>
+                            <div className="text-gray-700">
+                                <p className="mb-2">
+                                    <span className="font-semibold">Address:</span> 123 Main Street, Cityville, State 12345
+                                </p>
+                                <p className="mb-2">
+                                    <span className="font-semibold">Phone:</span> (123) 456-7890
+                                </p>
+                                <p className="mb-2">
+                                    <span className="font-semibold">Email:</span> info@example.com
+                                </p>
+                            </div>
+                        </div>
                     </div>
                     <div className="space-y-3">
                         <div className="uppercase dark:text-gray-900">Social media</div>

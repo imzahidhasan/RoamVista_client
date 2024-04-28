@@ -1,8 +1,47 @@
-import React from 'react'
+import { data } from 'autoprefixer'
+import React, { useState } from 'react'
 import { useLoaderData } from 'react-router-dom'
-
+import Swal from 'sweetalert2'
 const MyListPage = () => {
-  const spot_data = useLoaderData()
+  const data = useLoaderData()
+  const [spot_data, setSpot_data] = useState(data)
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`https://roam-vista-server.vercel.app/delete-document`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ id: id })
+        }).then(res => res.json())
+          .then(data => {
+            if (data.deletedCount) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+              });
+            }
+            fetch('https://roam-vista-server.vercel.app/all-tourist-spot')
+              .then(res => res.json())
+              .then(data => setSpot_data(data))
+          })
+
+      }
+    });
+
+
+  }
   return (
     <div className='container mx-auto p-5'>
       <table className="table table-zebra">
@@ -20,20 +59,20 @@ const MyListPage = () => {
         </thead>
         <tbody>
           {
-            spot_data.map((spot,idx) => <tr key={spot._id}>
-              <th>{ idx+1}</th>
+            spot_data.map((spot, idx) => <tr key={spot._id}>
+              <th>{idx + 1}</th>
               <td>{spot.tourist_spot_name}</td>
               <td>{spot.country_name}</td>
               <td>{spot.location}</td>
               <td>{spot.total_visitor_per_year}</td>
               <td><button className='btn btn-outline btn-info'>UPDATE</button></td>
-              <td><button className='btn btn-outline btn-error'>DELETE</button></td>
+              <td><button onClick={() => handleDelete(spot._id)} className='btn btn-outline btn-error'>DELETE</button></td>
             </tr>)
           }
 
         </tbody>
       </table>
-     
+
     </div>
   )
 }
