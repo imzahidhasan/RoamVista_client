@@ -7,15 +7,15 @@ export const FirebaseContext = createContext(null)
 
 const FirebaseProvider = ({ children }) => {
   const [user, setUser] = useState(null)
-  const [loading,setLoading]=useState(true)
+  const [loading, setLoading] = useState(true)
   const createUser = (email, password) => {
     setLoading(true)
-    return createUserWithEmailAndPassword(auth,email,password)
+    return createUserWithEmailAndPassword(auth, email, password)
   }
-  const updateUser = (name, photoURL) => {
+  const updateUser = (name, image) => {
     setLoading(true)
     return updateProfile(auth.currentUser, {
-      displayName: name, photoURL:photoURL
+      displayName: name, image: image
     })
   }
   const googleLogin = (provider) => {
@@ -24,12 +24,12 @@ const FirebaseProvider = ({ children }) => {
   }
   const githubLogin = (provider) => {
     setLoading(true)
-    return signInWithPopup(auth,provider)
+    return signInWithPopup(auth, provider)
   }
 
   const loginUser = (email, password) => {
     setLoading(true)
-  return signInWithEmailAndPassword(auth,email,password)
+    return signInWithEmailAndPassword(auth, email, password)
   }
   const logout = () => {
     return signOut(auth)
@@ -56,7 +56,7 @@ const FirebaseProvider = ({ children }) => {
     setUser,
     loading,
     setLoading
-}
+  }
 
   return (
     <FirebaseContext.Provider value={allMethod}>

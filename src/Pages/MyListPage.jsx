@@ -66,7 +66,7 @@ const MyListPage = () => {
               <td>{spot.tourist_spot_name}</td>
               <td>{spot.country_name}</td>
               <td>{spot.location}</td>
-              <td>{spot.total_visitor_per_year}</td>
+              <td>{spot.totalVisitorsPerYear}</td>
               <td><button className='btn btn-outline btn-info'>UPDATE</button></td>
               <td><button onClick={() => handleDelete(spot._id)} className='btn btn-outline btn-error'>DELETE</button></td>
             </tr>)

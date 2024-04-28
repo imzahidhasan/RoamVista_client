@@ -17,10 +17,10 @@ const RegisterPage = () => {
     } = useForm()
 
     const onSubmit = (data) => {
-        const { name, email, photoURL, password } = data
+        const { name, email, image, password } = data
         const createUserPromise = createUser(email, password)
             .then(() => {
-                updateUser(name, photoURL)
+                updateUser(name, image)
                 navigate('/')
             })
             .catch((error) => {
@@ -63,14 +63,14 @@ const RegisterPage = () => {
                             </div>
                             <div>
                                 <label className="block mb-2 text-sm">Photo URL</label>
-                                <input {...register("photoURL", {
+                                <input {...register("image", {
                                     required: true,
                                     pattern: {
                                         value: /^https:\/\//,
                                         message: 'URL must start with https://'
                                     }
-                                })} type="text" name="photoURL" placeholder="Your photo url here" className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800" />
-                                {errors.photoURL && <span className='text-red-500'>{errors.photoURL.message || 'This field is required'}</span>}
+                                })} type="text" name="image" placeholder="Your photo url here" className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800" />
+                                {errors.image && <span className='text-red-500'>{errors.image.message || 'This field is required'}</span>}
                             </div>
                             <div>
                                 <div className="flex justify-between mb-2">

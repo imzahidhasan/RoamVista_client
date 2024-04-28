@@ -52,7 +52,7 @@ const Navbar = () => {
                     {user ? <>
                         <div className="avatar">
                             <div className="w-10 rounded-full ring ring-orange-600 ring-offset-base-100 ring-offset-2">
-                                <a className="my-anchor-element"><img src={user?.photoURL} /></a>
+                                <a className="my-anchor-element"><img src={user?.image} /></a>
                                 <Tooltip className='relative z-10' anchorSelect=".my-anchor-element" >
                                     {user?.displayName}
                                 </Tooltip>

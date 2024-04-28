@@ -55,11 +55,11 @@ const routes = createBrowserRouter([
                 element: <PrivetRoute><UpdateSpotPage /></PrivetRoute>
             },
             {
-                path: 'spot-in-the-country/:country_name',
+                path: 'spot-in-the-country/:country_Name',
                 element: <AllSpotInCountry />,
-                loader: ({ params }) => fetch(`https://roam-vista-server.vercel.app/spot-in-the-country/${params.country_name}`)
+                loader: ({ params }) => fetch(`https://roam-vista-server.vercel.app/spot-in-the-country/${params.country_Name}`)
             },
-           
+
         ]
     },
 

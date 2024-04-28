@@ -24,9 +24,9 @@ const AddTouristSpot = () => {
       .then(result => {
         if (result.insertedId) {
           toast.success('Successfully added your tourist spot')
+          reset()
         }
       })
-    reset()
   }
 
 
@@ -48,26 +48,26 @@ const AddTouristSpot = () => {
             <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
               <div className="col-span-full sm:col-span-3">
                 <label className="text-sm">Photo URL of tourist spot</label>
-                <input {...register("photoURL", {
+                <input {...register("image", {
                   required: true,
                   pattern: {
                     value: /^https:\/\//,
                     message: 'URL must start with https://'
                   }
                 })} type="text" placeholder="Enter photo URL" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:border-none p-4 border focus:dark:ring-violet-600 dark:border-gray-300" />
-                {errors.photoURL && <span className='text-red-500' >{errors.photoURL.message || 'This field is required'}</span>}
+                {errors.image && <span className='text-red-500' >{errors.image.message || 'This field is required'}</span>}
 
               </div>
               <div className="col-span-full sm:col-span-3">
                 <label className="text-sm">Tourist spot name</label>
-                <input {...register("tourist_spot_name", { required: true })} type="text" placeholder="Enter tourist spot name" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:border-none p-4 border focus:dark:ring-violet-600 dark:border-gray-300" />
-                {errors.tourist_spot_name && <span className='text-red-500' >This field is required</span>}
+                <input {...register("tourists_spot_name", { required: true })} type="text" placeholder="Enter tourist spot name" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:border-none p-4 border focus:dark:ring-violet-600 dark:border-gray-300" />
+                {errors.tourists_spot_name && <span className='text-red-500' >This field is required</span>}
               </div>
               <div className="col-span-full sm:col-span-3">
                 <label className="mb-2 ">Select a country:</label>
                 <div className="relative">
                   <select
-                    {...register('country_name', { required: true })}
+                    {...register('country_Name', { required: true })}
                     className="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-500 px-4 py-4  rounded shadow leading-tight focus:dark:ring-violet-600 dark:border-gray-300"
                   >
                     <option disabled >Country</option>
