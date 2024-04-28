@@ -62,7 +62,7 @@ const HomePage = () => {
                   {isActive && (
                     <div className="text-center text-white z-10">
                       <h2 className="text-4xl font-bold mb-4">Journey Across Europe" </h2>
-                      <p className="text-xl">"Embark on an odyssey through Europe's diverse landscapes and captivating cultures. From the romance of Paris to the splendor of the Swiss Alps, let our curated experiences immerse you in the heart of each destination. Get ready to discover the wonders of Europe like never before."</p>
+                      <p className="text-start max-w-[600px] tracking-wide mx-auto">"Embark on an odyssey through Europe's diverse landscapes and captivating cultures. From the romance of Paris to the splendor of the Swiss Alps, let our curated experiences immerse you in the heart of each destination. Get ready to discover the wonders of Europe like never before."</p>
                     </div>
                   )}
                 </div>
@@ -77,8 +77,8 @@ const HomePage = () => {
                   <div className="bg-black bg-opacity-50 absolute inset-0"></div>
                   {isActive && (
                     <div className="text-center text-white z-10" >
-                      <h2 className="text-4xl font-bold mb-4">Journey Across Europe" </h2>
-                      <p className="text-xl">"Embark on an odyssey through Europe's diverse landscapes and captivating cultures. From the romance of Paris to the splendor of the Swiss Alps, let our curated experiences immerse you in the heart of each destination. Get ready to discover the wonders of Europe like never before."</p>
+                      <h2 className="text-4xl font-bold mb-4"> "Embark on an Adventure"</h2>
+                      <p className="text-start max-w-[600px] tracking-wide mx-auto">Uncover the timeless beauty of Europe with [Your Travel Agency Name]. Traverse through quaint villages, wander along cobblestone streets, and immerse yourself in the vibrant cultures that define this enchanting continent. Let us guide you on a journey filled with breathtaking landscapes, iconic landmarks, and unforgettable moments."</p>
                     </div>
                   )}
                 </div>
@@ -93,8 +93,8 @@ const HomePage = () => {
                   <div className="bg-black bg-opacity-50 absolute inset-0"></div>
                   {isActive && (
                     <div className="text-center text-white z-10">
-                      <h2 className="text-4xl font-bold mb-4">Journey Across Europe" </h2>
-                      <p className="text-xl">"Embark on an odyssey through Europe's diverse landscapes and captivating cultures. From the romance of Paris to the splendor of the Swiss Alps, let our curated experiences immerse you in the heart of each destination. Get ready to discover the wonders of Europe like never before."</p>
+                      <h2 className="text-4xl font-bold mb-4"> "Discover Your Path"</h2>
+                      <p className="text-start max-w-[600px] tracking-wide mx-auto">"Set foot on a journey of self-discovery with us. Navigate through unknown territories, uncover hidden treasures, and embrace the unexpected twists that define your unique path. Let every step be a testament to your courage, resilience, and determination to explore the depths of your soul. Join us as we embark on a quest to uncover the true essence of who you are."</p>
                     </div>
                   )}
                 </div>
