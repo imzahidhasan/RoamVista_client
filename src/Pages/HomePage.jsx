@@ -9,10 +9,48 @@ import Heading from '../Components/Heading';
 import Card from '../Components/Card';
 import { Link, useLoaderData } from 'react-router-dom';
 import { Typewriter } from 'react-simple-typewriter';
-
-
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const HomePage = () => {
+  var settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    autoplaySpeed: 1500,
+    arrows: false,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    autoplay: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  };
   const tourist_spot = useLoaderData()
   const [country, setCountry] = useState([])
   useEffect(() => {
@@ -45,7 +83,7 @@ const HomePage = () => {
                   <div className="bg-black bg-opacity-40 absolute inset-0"></div>
                   {isActive && (
                     <div className="text-center text-white z-10">
-                      <h2 className=" text-xl md:text-4xl text-blue-300 font-bold mb-4">  "Explore Europe's Charm", Travel to <Typewriter words={['France','Italy','Spain','England','Netherlands','Switzerland']} cursor={true} loop={true} /></h2>
+                      <h2 className=" text-xl md:text-4xl text-blue-300 font-bold mb-4">  "Explore Europe's Charm", Travel to <Typewriter words={['France', 'Italy', 'Spain', 'England', 'Netherlands', 'Switzerland']} cursor={true} loop={true} /></h2>
                       <p className="md:text-start  text-sm md:text-base max-w-[600px] tracking-wide mx-auto">Embark on unforgettable adventures with RoamVista. Our expertly crafted itineraries promise to take you to the world's most enchanting destinations. Let us be your guide as you create memories to last a lifetime</p>
                     </div>
                   )}
@@ -135,11 +173,61 @@ const HomePage = () => {
             })
           }
         </div>
-        {
+        <div className='m-5'>
+          <Heading text={'Client Review'} para={'Hear what our satisfied customers have to say about their experiences with our company. We take pride in delivering exceptional service and exceeding expectations.'}></Heading>
+          <div className='mt-5'>
+            <Slider {...settings}>
+              <div>
+                <div className="bg-base-100 dark:bg-[#3C5B6F] dark:text-[#DFD0B8] flex justify-center items-center flex-col rounded-lg shadow-md overflow-hidden text-center mx-4 ">
+                  <img src="https://i.ibb.co/0r97Dwf/darius-bashar-D6cgen-SS5-NY-unsplash.jpg" alt="User" className="w-32 text-center p-5 mx-auto h-32 object-cover rounded-full" />
+                  <div className="p-4">
+                    <h2 className="text-lg font-semibold">WanderlustQueen</h2>
+                    <p className="dark:text-[#DFD0B8] mt-2">Absolutely fantastic! I booked a last-minute getaway through this agency and they made it happen seamlessly. Their attention to detail and customer service are top-notch.</p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div className="bg-base-100 dark:bg-[#3C5B6F] dark:text-[#DFD0B8] flex justify-center items-center flex-col rounded-lg shadow-md overflow-hidden text-center mx-4 ">
+                  <img src="https://i.ibb.co/0r97Dwf/darius-bashar-D6cgen-SS5-NY-unsplash.jpg" alt="User" className="w-32 text-center p-5 mx-auto h-32 object-cover rounded-full" />
+                  <div className="p-4">
+                    <h2 className="text-lg font-semibold">WanderlustQueen</h2>
+                    <p className="dark:text-[#DFD0B8] mt-2">Absolutely fantastic! I booked a last-minute getaway through this agency and they made it happen seamlessly. Their attention to detail and customer service are top-notch.</p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div className="bg-base-100 dark:bg-[#3C5B6F] dark:text-[#DFD0B8] flex justify-center items-center flex-col rounded-lg shadow-md overflow-hidden text-center mx-4 ">
+                  <img src="https://i.ibb.co/0r97Dwf/darius-bashar-D6cgen-SS5-NY-unsplash.jpg" alt="User" className="w-32 text-center p-5 mx-auto h-32 object-cover rounded-full" />
+                  <div className="p-4">
+                    <h2 className="text-lg font-semibold">WanderlustQueen</h2>
+                    <p className="dark:text-[#DFD0B8] mt-2">Absolutely fantastic! I booked a last-minute getaway through this agency and they made it happen seamlessly. Their attention to detail and customer service are top-notch.</p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div className="bg-base-100 dark:bg-[#3C5B6F] dark:text-[#DFD0B8] flex justify-center items-center flex-col rounded-lg shadow-md overflow-hidden text-center mx-4 ">
+                  <img src="https://i.ibb.co/0r97Dwf/darius-bashar-D6cgen-SS5-NY-unsplash.jpg" alt="User" className="w-32 text-center p-5 mx-auto h-32 object-cover rounded-full" />
+                  <div className="p-4">
+                    <h2 className="text-lg font-semibold">WanderlustQueen</h2>
+                    <p className="dark:text-[#DFD0B8] mt-2">Absolutely fantastic! I booked a last-minute getaway through this agency and they made it happen seamlessly. Their attention to detail and customer service are top-notch.</p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div className="bg-base-100 dark:bg-[#3C5B6F] dark:text-[#DFD0B8] flex justify-center items-center flex-col rounded-lg shadow-md overflow-hidden text-center mx-4 ">
+                  <img src="https://i.ibb.co/0r97Dwf/darius-bashar-D6cgen-SS5-NY-unsplash.jpg" alt="User" className="w-32 text-center p-5 mx-auto h-32 object-cover rounded-full" />
+                  <div className="p-4">
+                    <h2 className="text-lg font-semibold">WanderlustQueen</h2>
+                    <p className="dark:text-[#DFD0B8] mt-2">Absolutely fantastic! I booked a last-minute getaway through this agency and they made it happen seamlessly. Their attention to detail and customer service are top-notch.</p>
+                  </div>
+                </div>
+              </div>
 
-        }
+            </Slider>
+          </div>
+        </div>
       </div>
-    </div>
+    </div >
   )
 }
 
