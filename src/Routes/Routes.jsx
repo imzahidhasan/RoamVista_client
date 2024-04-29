@@ -53,7 +53,7 @@ const routes = createBrowserRouter([
             {
                 path: 'update-spot/:id',
                 element: <PrivetRoute><UpdateSpotPage /></PrivetRoute>,
-                loader: ({params}) => fetch(`http://localhost:3000/update-spot/${params.id}`)
+                loader: ({ params }) => fetch(`https://roam-vista-server.vercel.app/update-spot/${params.id}`)
             },
             {
                 path: 'spot-in-the-country/:country_Name',

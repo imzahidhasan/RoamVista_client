@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { FirebaseContext } from '../firebase/FirebaseProvider'
-import toast from 'react-hot-toast'
 import Lottie from 'lottie-react'
 import write from '../assets/write.json'
+import Swal from 'sweetalert2'
 const AddTouristSpot = () => {
   const { user } = useContext(FirebaseContext)
   const {
@@ -24,7 +24,10 @@ const AddTouristSpot = () => {
       .then(res => res.json())
       .then(result => {
         if (result.insertedId) {
-          toast.success('Successfully added your tourist spot')
+          Swal.fire({
+            title: 'Added spot successfully',
+            icon: 'success'
+          })
           reset()
         }
       })
@@ -34,41 +37,41 @@ const AddTouristSpot = () => {
 
   return (
     <div>
-      <section className="p-6 dark:bg-gray-100 dark:text-gray-900">
-        <form onSubmit={handleSubmit(onSubmit)} className="container flex flex-col mx-auto space-y-12">
-          <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-50">
+      <section className="p-6 dark:text-[#DFD0B8] dark:bg-[#153448]">
+        <form onSubmit={handleSubmit(onSubmit)} className="container flex flex-col dark:bg-[#153448] mx-auto space-y-12">
+          <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm ">
 
             <div className="space-y-2 col-span-full lg:col-span-1">
               <p className="font-medium text-xl">Tourist Spot Information</p>
               <p className="text-sm">Share your favorite travel destinations from around the world! Help fellow explorers discover exciting new places to visit by submitting details about remarkable tourist spots, hidden gems, and must-see attractions.</p>
               <div>
-                <Lottie animationData={write} loop={true}  ></Lottie>
+                <Lottie  animationData={write} loop={true}  ></Lottie>
               </div>
             </div>
 
             <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
               <div className="col-span-full sm:col-span-3">
                 <label className="text-sm">Photo URL of tourist spot</label>
-                <input {...register("image", {
+                <input {...register("photoURL", {
                   required: true,
                   pattern: {
                     value: /^https:\/\//,
                     message: 'URL must start with https://'
                   }
                 })} type="text" placeholder="Enter photo URL" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:border-none p-4 border focus:dark:ring-violet-600 dark:border-gray-300" />
-                {errors.image && <span className='text-red-500' >{errors.image.message || 'This field is required'}</span>}
+                {errors.photoURL && <span className='text-red-500' >{errors.photoURL.message || 'This field is required'}</span>}
 
               </div>
               <div className="col-span-full sm:col-span-3">
                 <label className="text-sm">Tourist spot name</label>
-                <input {...register("tourists_spot_name", { required: true })} type="text" placeholder="Enter tourist spot name" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:border-none p-4 border focus:dark:ring-violet-600 dark:border-gray-300" />
-                {errors.tourists_spot_name && <span className='text-red-500' >This field is required</span>}
+                <input {...register("tourist_spot_name", { required: true })} type="text" placeholder="Enter tourist spot name" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:border-none p-4 border focus:dark:ring-violet-600 dark:border-gray-300" />
+                {errors.tourist_spot_name && <span className='text-red-500' >This field is required</span>}
               </div>
               <div className="col-span-full sm:col-span-3">
                 <label className="mb-2 ">Select a country:</label>
                 <div className="relative">
                   <select
-                    {...register('country_Name', { required: true })}
+                    {...register('country_name', { required: true })}
                     className="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-500 px-4 py-4  rounded shadow leading-tight focus:dark:ring-violet-600 dark:border-gray-300"
                   >
                     <option disabled >Country</option>
@@ -119,8 +122,8 @@ const AddTouristSpot = () => {
               </div>
               <div className="col-span-full sm:col-span-3">
                 <label className="text-sm">Total Visitors Per Year</label>
-                <input {...register("total_visitor_per_year", { required: true })} type="text" placeholder="Enter total visitor per year" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:border-none p-4 border  focus:dark:ring-violet-600 dark:border-gray-300" />
-                {errors.total_visitor_per_year && <span className='text-red-500' >This field is required</span>}
+                <input {...register("totalVisitorsPerYear", { required: true })} type="text" placeholder="Enter total visitor per year" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:border-none p-4 border  focus:dark:ring-violet-600 dark:border-gray-300" />
+                {errors.totalVisitorsPerYear && <span className='text-red-500' >This field is required</span>}
 
               </div>
               <div className="col-span-full sm:col-span-3">

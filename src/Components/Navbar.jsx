@@ -4,7 +4,8 @@ import { FirebaseContext } from '../firebase/FirebaseProvider'
 import toast from 'react-hot-toast'
 import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
-const Navbar = () => {
+import { MdDarkMode, MdLightMode } from "react-icons/md";
+const Navbar = ({ toggleDarkMode, darkMode }) => {
     const { user, logout, setUser } = useContext(FirebaseContext)
     const handleLogout = () => {
         logout()
@@ -15,23 +16,23 @@ const Navbar = () => {
     }
     const links = <>
         <li><NavLink to={'/'} className={({ isActive }) =>
-            isActive ? "text-blue-800 bg-blue-300" : ""
+            isActive ? "border-b-2 border-blue-400 dark:border-[#DFD0B8]" : ""
         }>Home</NavLink></li>
         <li><NavLink to={'/all-tourist-spot'} className={({ isActive }) =>
-            isActive ? "text-blue-800 bg-blue-300" : ""
+            isActive ? "border-b-2 border-blue-400 dark:border-[#DFD0B8]" : ""
         }>All Tourists Spot</NavLink></li>
         {<li>{user ? <NavLink to={'/add-tourist-spot'} className={({ isActive }) =>
-            isActive ? "text-blue-800 bg-blue-300" : ""
+            isActive ? "border-b-2 border-blue-400 dark:border-[#DFD0B8]" : ""
         }>Add Tourists Spot</NavLink> : ''}</li>}
         {
             <li>{user ? <NavLink to={`/my-list/${user?.email}`} className={({ isActive }) =>
-                isActive ? "text-blue-800 bg-blue-300" : ""
+                isActive ? "border-b-2 border-blue-400 dark:border-[#DFD0B8]" : ""
             }>My List</NavLink> : ''}</li>
         }
     </>
     return (
         <div className='container mx-auto'>
-            <div className="navbar bg-base-100">
+            <div className="navbar bg-gray-200 dark:bg-[#153448] dark:text-[#DFD0B8]">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -43,12 +44,21 @@ const Navbar = () => {
                     </div>
                     <Link to={'/'} className="btn btn-ghost font-bold text-lg md:text-4xl">RoamVista</Link>
                 </div>
-                <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">
+                <div className="navbar-center hidden font-medium lg:flex">
+                    <ul className="menu-horizontal gap-5 px-1">
                         {links}
                     </ul>
                 </div>
-                <div className="navbar-end  gap-1 md:gap-2">
+                <div className="navbar-end  gap-2 md:gap-2">
+                    <button
+                        className={`btn btn-circle text-xl transition-colors duration-800 ${darkMode
+                            ? 'bg-[#153448] text-white hover:bg-gray-700'
+                            : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+                            }`}
+                        onClick={toggleDarkMode}
+                    >
+                        {darkMode ? <MdDarkMode  /> : <MdLightMode />}
+                    </button>
                     {user ? <>
                         <div className="avatar">
                             <div className="w-10 rounded-full ring ring-orange-600 ring-offset-base-100 ring-offset-2">
@@ -61,6 +71,7 @@ const Navbar = () => {
                         <button onClick={handleLogout} className='btn'>Logout</button></> : <><Link to={'/register'} className="btn">Register</Link>
                         <Link to={'/login'} className="btn">Login</Link>
                     </>}
+                    
                 </div>
             </div>
         </div>

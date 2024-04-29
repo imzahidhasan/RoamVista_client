@@ -7,16 +7,32 @@ import Swal from 'sweetalert2'
 const UpdateSpotPage = () => {
   const { user } = useContext(FirebaseContext)
 
-  const {_id} = useLoaderData()
+  const { _id, photoURL, user_name, user_email, description, travel_time,totalVisitorsPerYear, location,average_cost,seasonality, tourist_spot_name, country_name } = useLoaderData()
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm()
+  } = useForm({
+    defaultValues: {
+      photoURL: photoURL,
+      tourist_spot_name: tourist_spot_name,
+      country_name: country_name,
+      location: location,
+      average_cost: average_cost,
+      seasonality: seasonality,
+      totalVisitorsPerYear: totalVisitorsPerYear,
+      travel_time: travel_time,
+      description: description,
+      user_name: user_name,
+      user_email:user_email
+      
+
+    }
+  })
 
   const onSubmit = (data) => {
-    fetch(`http://localhost:3000/update/${_id}`, {
+    fetch(`https://roam-vista-server.vercel.app/update/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json"
@@ -25,16 +41,15 @@ const UpdateSpotPage = () => {
     })
       .then(res => res.json())
       .then(data => {
-        if (data.matchedCount>0) {
+        reset()
+        if (data.matchedCount > 0) {
           Swal.fire({
             title: "Spot updated successfully!",
-            text: "You clicked the button!",
+            text: "You successfully updated the spot information",
             icon: "success"
           })
         }
       })
-
-
   }
 
 
@@ -188,7 +203,7 @@ const UpdateSpotPage = () => {
               </div>
 
               <div className="col-start-2 col-span-4  flex justify-center">
-                <button className="btn btn-primary w-full">Add Tourist Spot</button>
+                <button className="btn btn-primary w-full">Update</button>
               </div>
             </div>
           </fieldset>

@@ -5,7 +5,7 @@ const ViewDetails = () => {
       const spot_data = useLoaderData()
       console.log(spot_data);
       return (
-            <div className="bg-gray-100 py-8">
+            <div className="dark:bg-[#153448] py-8">
                   <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="bg-white rounded-lg shadow-md overflow-hidden">
                               <img
@@ -13,7 +13,7 @@ const ViewDetails = () => {
                                     alt="Eiffel Tower"
                                     className="w-full"
                               />
-                              <div className="p-6 bg-indigo-50">
+                              <div className="p-6 bg-indigo-50 dark:bg-[#3C5B6F] dark:text-[#DFD0B8]">
                                     <h1 className="text-3xl font-bold mb-4">{spot_data.tourists_spot_name}</h1>
                                     <p className="text-xl mb-4">Location:{` ${spot_data.location}, ${spot_data.country_Name}`}</p>
                                     <p className="mb-4">

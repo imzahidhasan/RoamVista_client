@@ -46,9 +46,8 @@ const MyListPage = () => {
   }
   return (
     <div className='container mx-auto p-5'>
-      <table className="table table-zebra">
-        {/* head */}
-        <thead>
+      <table className="table dark:bg-[#3C5B6F] dark:text-[#DFD0B8]">
+        <thead className='dark:bg-[#3C5B6F] dark:text-[#DFD0B8]'>
           <tr>
             <th></th>
             <th>Spot name</th>
