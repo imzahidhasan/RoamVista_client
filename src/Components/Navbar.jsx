@@ -31,8 +31,8 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
         }
     </>
     return (
-        <div className='container mx-auto'>
-            <div className="navbar bg-gray-200 dark:bg-[#153448] dark:text-[#DFD0B8]">
+        <div className='sticky top-0 z-50 shadow-lg'>
+            <div className="navbar container mx-auto bg-gray-200 dark:bg-[#153448] dark:text-[#DFD0B8]">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

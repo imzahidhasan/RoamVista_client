@@ -14,6 +14,12 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const HomePage = () => {
+  const [client, setClient] = useState([])
+  useEffect(() => {
+    fetch('https://roam-vista-server.vercel.app/client_review')
+      .then(res => res.json())
+      .then(data => setClient(data))
+  }, [])
   var settings = {
     dots: false,
     infinite: true,
@@ -63,7 +69,7 @@ const HomePage = () => {
       <div>
         <Swiper
           autoplay={{
-            delay: 2500,
+            delay: 3000,
             disableOnInteraction: false,
           }}
 
@@ -71,8 +77,9 @@ const HomePage = () => {
           pagination={{
             clickable: true
           }}
+          Autoplay={true}
           navigation={true}
-          modules={[Pagination, EffectFade, Navigation]}
+          modules={[Pagination, Autoplay, EffectFade, Navigation]}
           className="mySwiper md:h-screen container mx-auto"
         >
           <SwiperSlide>
@@ -177,52 +184,18 @@ const HomePage = () => {
           <Heading text={'Client Review'} para={'Hear what our satisfied customers have to say about their experiences with our company. We take pride in delivering exceptional service and exceeding expectations.'}></Heading>
           <div className='mt-5'>
             <Slider {...settings}>
-              <div>
-                <div className="bg-base-100 dark:bg-[#3C5B6F] dark:text-[#DFD0B8] flex justify-center items-center flex-col rounded-lg shadow-md overflow-hidden text-center mx-4 ">
-                  <img src="https://i.ibb.co/0r97Dwf/darius-bashar-D6cgen-SS5-NY-unsplash.jpg" alt="User" className="w-32 text-center p-5 mx-auto h-32 object-cover rounded-full" />
-                  <div className="p-4">
-                    <h2 className="text-lg font-semibold">WanderlustQueen</h2>
-                    <p className="dark:text-[#DFD0B8] mt-2">Absolutely fantastic! I booked a last-minute getaway through this agency and they made it happen seamlessly. Their attention to detail and customer service are top-notch.</p>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div className="bg-base-100 dark:bg-[#3C5B6F] dark:text-[#DFD0B8] flex justify-center items-center flex-col rounded-lg shadow-md overflow-hidden text-center mx-4 ">
-                  <img src="https://i.ibb.co/0r97Dwf/darius-bashar-D6cgen-SS5-NY-unsplash.jpg" alt="User" className="w-32 text-center p-5 mx-auto h-32 object-cover rounded-full" />
-                  <div className="p-4">
-                    <h2 className="text-lg font-semibold">WanderlustQueen</h2>
-                    <p className="dark:text-[#DFD0B8] mt-2">Absolutely fantastic! I booked a last-minute getaway through this agency and they made it happen seamlessly. Their attention to detail and customer service are top-notch.</p>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div className="bg-base-100 dark:bg-[#3C5B6F] dark:text-[#DFD0B8] flex justify-center items-center flex-col rounded-lg shadow-md overflow-hidden text-center mx-4 ">
-                  <img src="https://i.ibb.co/0r97Dwf/darius-bashar-D6cgen-SS5-NY-unsplash.jpg" alt="User" className="w-32 text-center p-5 mx-auto h-32 object-cover rounded-full" />
-                  <div className="p-4">
-                    <h2 className="text-lg font-semibold">WanderlustQueen</h2>
-                    <p className="dark:text-[#DFD0B8] mt-2">Absolutely fantastic! I booked a last-minute getaway through this agency and they made it happen seamlessly. Their attention to detail and customer service are top-notch.</p>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div className="bg-base-100 dark:bg-[#3C5B6F] dark:text-[#DFD0B8] flex justify-center items-center flex-col rounded-lg shadow-md overflow-hidden text-center mx-4 ">
-                  <img src="https://i.ibb.co/0r97Dwf/darius-bashar-D6cgen-SS5-NY-unsplash.jpg" alt="User" className="w-32 text-center p-5 mx-auto h-32 object-cover rounded-full" />
-                  <div className="p-4">
-                    <h2 className="text-lg font-semibold">WanderlustQueen</h2>
-                    <p className="dark:text-[#DFD0B8] mt-2">Absolutely fantastic! I booked a last-minute getaway through this agency and they made it happen seamlessly. Their attention to detail and customer service are top-notch.</p>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div className="bg-base-100 dark:bg-[#3C5B6F] dark:text-[#DFD0B8] flex justify-center items-center flex-col rounded-lg shadow-md overflow-hidden text-center mx-4 ">
-                  <img src="https://i.ibb.co/0r97Dwf/darius-bashar-D6cgen-SS5-NY-unsplash.jpg" alt="User" className="w-32 text-center p-5 mx-auto h-32 object-cover rounded-full" />
-                  <div className="p-4">
-                    <h2 className="text-lg font-semibold">WanderlustQueen</h2>
-                    <p className="dark:text-[#DFD0B8] mt-2">Absolutely fantastic! I booked a last-minute getaway through this agency and they made it happen seamlessly. Their attention to detail and customer service are top-notch.</p>
-                  </div>
-                </div>
-              </div>
 
+              {
+                client.map((client) => <div key={client._id}>
+                  <div className="bg-base-100 dark:bg-[#3C5B6F] dark:text-[#DFD0B8] flex justify-center items-center flex-col rounded-lg shadow-md overflow-hidden text-center mx-4 ">
+                    <img src={ client.imageURL} alt="User" className="w-32 text-center p-5 mx-auto h-32 object-cover rounded-full" />
+                    <div className="p-4">
+                      <h2 className="text-lg font-semibold">{ client.name}</h2>
+                      <p className="dark:text-[#DFD0B8] mt-2">{`${client.review.slice(0,120)}....`}</p>
+                    </div>
+                  </div>
+                </div>)
+              }
             </Slider>
           </div>
         </div>
