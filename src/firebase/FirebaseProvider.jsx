@@ -12,10 +12,11 @@ const FirebaseProvider = ({ children }) => {
     setLoading(true)
     return createUserWithEmailAndPassword(auth, email, password)
   }
-  const updateUser = (name, image) => {
+  const updateUser = (name, photoURL) => {
     setLoading(true)
     return updateProfile(auth.currentUser, {
-      displayName: name, image: image
+      displayName: name,
+      photoURL: photoURL
     })
   }
   const googleLogin = (provider) => {
