@@ -61,15 +61,15 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
                     </button>
                     {user ? <>
                         <div className="avatar">
-                            <div className="w-10 rounded-full ring ring-orange-600 ring-offset-base-100 ring-offset-2">
+                            <div className="w-10 rounded-full ring dark:ring-[#435585] ring-[#818FB4] ring-offset-base-100 ring-offset-2">
                                 <a className="my-anchor-element"><img src={user?.photoURL} /></a>
                                 <Tooltip className='relative z-10' anchorSelect=".my-anchor-element" >
                                     {user?.displayName}
                                 </Tooltip>
                             </div>
                         </div>
-                        <button onClick={handleLogout} className='btn'>Logout</button></> : <><Link to={'/register'} className="btn">Register</Link>
-                        <Link to={'/login'} className="btn">Login</Link>
+                        <button onClick={handleLogout} className='btn dark:bg-[#818FB4] dark:text-[#F5E8C7]'>Logout</button></> : <><Link to={'/register'} className="btn dark:bg-[#818FB4] dark:text-[#F5E8C7]">Register</Link>
+                            <Link to={'/login'} className="btn dark:bg-[#818FB4] dark:text-[#F5E8C7]">Login</Link>
                     </>}
                     
                 </div>

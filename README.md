@@ -1,8 +1,18 @@
-# React + Vite
+# RoamVista
+###### B9 A10 Type-01 Requirements
+###### Live link: https://roamvista-37dee.web.app/all-tourist-spot
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Features
+* users can create account and see information about toursit spot.
+* users can add toursit spot for publice to see.
+* users can update there added toursit spot which they added before
+* users can delete there added tourist spot which they added before
+* users can see there all added tourist spot .
+* users can switch between dark mode and light mode.
+* users can sort tourist spot ascending and descending order by average_cost.
+* users can login using google and github.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## special npm  package used for this project
+* lottie-react
+* react simple typewriter
+* react tooltip
