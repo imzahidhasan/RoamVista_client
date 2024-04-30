@@ -12,6 +12,8 @@ import { Typewriter } from 'react-simple-typewriter';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Lottie from 'lottie-react';
+import mail from '../assets/mail.json'
 
 const HomePage = () => {
   const [client, setClient] = useState([])
@@ -198,6 +200,30 @@ const HomePage = () => {
               }
             </Slider>
           </div>
+        </div>
+        <div>
+          <Heading text={'Stay Updated with us'}></Heading>
+          <div className=" py-12">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6  lg:px-8">
+              <div className="bg-white rounded-lg shadow-xl text-gray-600 dark:bg-[#818FB4] dark:text-[#F5E8C7] overflow-hidden md:flex">
+                <div className="md:w-1/2 px-4 py-8 md:p-8">
+                  <h2 className="text-2xl font-semibold  mb-2">Subscribe to Our Newsletter</h2>
+                  <p className=" mb-6">Stay updated with our latest news and promotions. Subscribe now!</p>
+                  <form >
+                    <div className="flex items-center border-b-2  py-2">
+                      <input type="email" name="email" id="email" className="appearance-none bg-transparent border-none w-full mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="Enter your email address"/>
+                      <button type="submit" className="flex-shrink-0 bg-indigo-500 hover:bg-indigo-700 border-indigo-500 hover:border-indigo-700 dark:text-[#F5E8C7] text-white text-sm border-4 py-1 px-2 rounded">Subscribe</button>
+                    </div>
+                  </form>
+                  <p className="text-xs  mt-2">We'll never share your email with anyone else.</p>
+                </div>
+                <div className="md:w-1/2 hidden md:block relative">
+                  <Lottie animationData={mail}/>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div >
